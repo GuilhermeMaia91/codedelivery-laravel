@@ -4,7 +4,7 @@ namespace CodeDelivery\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminCategoryRequest extends FormRequest
+class AdminProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,10 @@ class AdminCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3'
+            'name' => 'required|min:3',
+            'description' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
         ];
     }
 }
