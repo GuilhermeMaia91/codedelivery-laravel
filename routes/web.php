@@ -34,4 +34,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.checkrole', 'as' => 'ad
     Route::get('products/edit/{id}',['as' => 'products.edit', 'uses' => 'ProductsController@edit']);
     Route::post('products/update/{id}',['as' => 'products.update', 'uses' => 'ProductsController@update']);
     Route::get('products/delete/{id}',['as' => 'products.destroy', 'uses' => 'ProductsController@destroy']);
+
+    Route::get('orders', ['as' => 'orders.index', 'uses' => 'OrdersController@index']);
+    Route::get('orders/create',['as' => 'orders.create', 'uses' => 'OrdersController@create']);
+    Route::post('orders/store',['as' => 'orders.store', 'uses' => 'OrdersController@store']);
+    Route::get('orders/edit/{id}',['as' => 'orders.edit', 'uses' => 'OrdersController@edit']);
+    Route::post('orders/update/{id}',['as' => 'orders.update', 'uses' => 'OrdersController@update']);
+    Route::get('orders/delete/{id}',['as' => 'orders.destroy', 'uses' => 'OrdersController@destroy']);
 });

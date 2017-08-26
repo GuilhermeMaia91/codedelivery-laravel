@@ -24,7 +24,10 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return User::class;
     }
 
-    
+    public function getDeliveryMen()
+    {
+        return $this->model->where(['role' => 'deliveryman'])->pluck('name', 'id');
+    }    
 
     /**
      * Boot up the repository, pushing criteria
