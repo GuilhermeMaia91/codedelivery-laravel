@@ -41,4 +41,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.checkrole', 'as' => 'ad
     Route::get('orders/edit/{id}',['as' => 'orders.edit', 'uses' => 'OrdersController@edit']);
     Route::post('orders/update/{id}',['as' => 'orders.update', 'uses' => 'OrdersController@update']);
     Route::get('orders/delete/{id}',['as' => 'orders.destroy', 'uses' => 'OrdersController@destroy']);
+
+    Route::get('cupoms', ['as' => 'cupoms.index', 'uses' => 'CupomsController@index']);
+    Route::get('cupoms/create',['as' => 'cupoms.create', 'uses' => 'CupomsController@create']);
+    Route::post('cupoms/store',['as' => 'cupoms.store', 'uses' => 'CupomsController@store']);
+    Route::get('cupoms/edit/{id}',['as' => 'cupoms.edit', 'uses' => 'CupomsController@edit']);
+    Route::post('cupoms/update/{id}',['as' => 'cupoms.update', 'uses' => 'CupomsController@update']);
+    Route::get('cupoms/delete/{id}',['as' => 'cupoms.destroy', 'uses' => 'CupomsController@destroy']);
+});
+
+Route::group(['prefix' => 'customer', 'as' => 'customer.'], function(){
+    Route::get('order', ['as' => 'order.index', 'uses' => 'CheckoutController@index']);
+    Route::get('order/create', ['as' => 'order.create', 'uses' => 'CheckoutController@create']);
+    Route::post('order/store', ['as' => 'order.store', 'uses' => 'CheckoutController@store']);
 });

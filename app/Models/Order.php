@@ -30,6 +30,6 @@ class Order extends Model implements Transformable
     }
 
     public function produto(){
-        return $this->belongsTo(Produto::class);
+        return $this->belongsTo(Product::class);
     }
 }
