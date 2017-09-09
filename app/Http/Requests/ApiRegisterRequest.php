@@ -4,7 +4,7 @@ namespace CodeDelivery\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminClientRequest extends FormRequest
+class ApiRegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,10 @@ class AdminClientRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'c_password' => 'required|same:password',
         ];
     }
 }

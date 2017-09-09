@@ -188,6 +188,11 @@ return [
          * Scafold Views
          */
         MarcusCampos\Scafold\ScafoldServiceProvider::class,
+
+        /*
+         * Passport OAuth2
+         */
+         Laravel\Passport\PassportServiceProvider::class,
     ],
 
     /*
