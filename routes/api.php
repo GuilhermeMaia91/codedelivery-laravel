@@ -22,12 +22,24 @@ Route::post('register', 'Api\UserController@register');
 
 Route::group(['prefix' => 'api', 'middleware' => 'auth:api', 'as' => 'api.'], function(){
     Route::post('details', 'Api\UserController@details');
-    
-    Route::get('pedidos', function(){
-        return [
-            'id' => 1,
-            'client' => 'Guilherme Maia',
-            'total' => 1000
-        ];
+
+    Route::group(['prefix' => 'client', 'as' => 'client.'], function(){
+        Route::get('pedidos', function(){
+            return [
+                'id' => 1,
+                'client' => 'Guilherme Maia - Cliente',
+                'total' => 1000
+            ];
+        });
+    });
+
+    Route::group(['prefix' => 'deliveryman', 'as' => 'deliveryman.'], function(){
+        Route::get('pedidos', function(){
+            return [
+                'id' => 1,
+                'client' => 'Guilherme Maia - Entregador',
+                'total' => 1000
+            ];
+        });
     });
 });
