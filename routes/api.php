@@ -31,12 +31,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth:api', 'as' => 'api.'], fu
     });
 
     Route::group(['prefix' => 'deliveryman', 'middleware' => 'oauth.checkrole:deliveryman', 'as' => 'deliveryman.'], function(){
-        Route::get('pedidos', function(){
-            return [
-                'id' => 1,
-                'client' => 'Guilherme Maia - Entregador',
-                'total' => 1000
-            ];
-        });
+        Route::get('orders', ['as' => 'deliveryman.index', 'uses' => 'Api\DeliverymanCheckoutController@index']);
+        Route::get('orders/show/{id}', ['as' => 'deliveryman.show', 'uses' => 'Api\DeliverymanCheckoutController@show']);
     });
 });

@@ -9,7 +9,7 @@ use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ClientCheckoutController extends Controller
+class DeliverymanCheckoutController extends Controller
 {
     /**
      * @var OrderRepository
@@ -32,23 +32,13 @@ class ClientCheckoutController extends Controller
     }
 
     public function index(Request $request){
-        $clientId = $this->userRepository->find($request->user()->id)->client->id;
+        $deliverymanId = $request->user()->id;
 
-        $orders = $this->orderRepository->with('items')->scopeQuery(function($query) use($clientId){
-            return $query->where('client_id', '=', $clientId);
+        $orders = $this->orderRepository->with('items')->scopeQuery(function($query) use($deliverymanId){
+            return $query->where('user_deliveryman_id', '=', $deliverymanId);
         })->paginate();
 
         return $orders;
-    }
-
-    public function store(Request $request){
-        $data = $request->all();
-        $clientId = $this->userRepository->find($request->user()->id)->client->id;
-
-        $data['client_id'] = $clientId;
-        $ob = $this->service->create($data);
-        
-        return $this->orderRepository->with('items')->find($ob->id);
     }
 
     public function show($id){
