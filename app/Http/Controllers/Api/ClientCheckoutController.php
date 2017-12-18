@@ -3,6 +3,7 @@
 namespace CodeDelivery\Http\Controllers\Api;
 
 use CodeDelivery\Http\Controllers\Controller;
+use CodeDelivery\Http\Requests\CheckoutRequest;
 use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;
@@ -41,7 +42,7 @@ class ClientCheckoutController extends Controller
         return $orders;
     }
 
-    public function store(Request $request){
+    public function store(CheckoutRequest $request){
         $data = $request->all();
         $clientId = $this->userRepository->find($request->user()->id)->client->id;
 
