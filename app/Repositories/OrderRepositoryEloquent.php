@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Repositories;
 
+use Illuminate\Support\Collection;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use CodeDelivery\Repositories\OrderRepository;
@@ -23,10 +24,13 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
             ]
         );
 
-        $result = [];
-        if ($collectionOrders instanceof Collection){
-            $result = $collectionOrders->first();
+        $result = $collectionOrders->first();
+        if ($result) {
+            $result->items->each(function ($item) {
+                $item->product;
+            });
         }
+
 
         return $result;
     }

@@ -41,13 +41,23 @@ class DeliverymanCheckoutController extends Controller
         return $orders;
     }
 
-    public function show($id){
-        $orders = $this->orderRepository->with(['client', 'cupom', 'items'])->find($id);
-
-        $orders->items->each(function($item){
-            $item->product;
-        });
+    public function show(Request $request, $id){
+        $deliverymanId = $request->user()->id;
+        
+        $orders = $this->orderRepository->getByIdAndDeliveryman($id, $deliverymanId);
 
         return $orders;
+    }
+
+    public function updateStatus(Request $request, $id){
+        $deliverymanId = $request->user()->id;
+
+        $order = $this->service->updateStatus($id, $deliverymanId, $request->get('status'));
+
+        if ($order){
+            return $order;
+        }
+
+        abort(400, "Order não encontrada");
     }
 }
