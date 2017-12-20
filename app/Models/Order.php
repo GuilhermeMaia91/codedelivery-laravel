@@ -13,9 +13,17 @@ class Order extends Model implements Transformable
     protected $fillable = [
         'client_id',
         'user_deliveryman_id',
+        'cupom_id',
         'total',
         'status'
     ];
+
+    public function transform()
+    {
+        return [
+            'order' => $this->id
+        ];
+    }
 
     public function client(){
         return $this->belongsTo(Client::class);

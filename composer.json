@@ -10,6 +10,7 @@
         "laravel/passport": "^4.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
+        "league/fractal": "^0.17.0",
         "marcuscampos/scafold": "^1.0",
         "prettus/l5-repository": "^2.6"
     },
